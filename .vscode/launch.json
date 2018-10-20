@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - run_queries",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "com.dl.a_1.run_queries",
+            "args": "",
+            "projectName": "a_1"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HelloLucene",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "com.dl.a_1.HelloLucene",
+            "args": "",
+            "projectName": "a_1"
+        }
+    ]
+}
