@@ -3,7 +3,6 @@ package com.dl.a_1;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,15 +11,8 @@ import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.LowerCaseFilter;
-import org.apache.lucene.analysis.StopFilter;
-import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.standard.StandardTokenizer;
-import org.apache.lucene.analysis.core.StopAnalyzer;
+
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
-import org.apache.lucene.analysis.en.PorterStemFilter;
 import org.apache.lucene.document.Document;
 
 import org.apache.lucene.index.DirectoryReader;
@@ -32,12 +24,9 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.similarities.BM25Similarity;
-import org.apache.lucene.search.similarities.BooleanSimilarity;
-import org.apache.lucene.search.similarities.ClassicSimilarity;
 
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.util.Version;
 
 public class run_queries {
     private static String INDEX_DIRECTORY = "index";
@@ -51,16 +40,13 @@ public class run_queries {
 		// create objects to read and search across the index
 		DirectoryReader ireader = DirectoryReader.open(directory);
         IndexSearcher isearcher = new IndexSearcher(ireader);
-        //isearcher.setSimilarity(new BooleanSimilarity());
-        //isearcher.setSimilarity(new Similarity());
+       
         isearcher.setSimilarity(new BM25Similarity());
 
 
 
-        //Analyzer analyzer = new StandardAnalyzer();
 
         EnglishAnalyzer analyzer = new EnglishAnalyzer();
-        //Analyzer analyzer = new StandardAnalyzer();
 
         QueryParser parser = new QueryParser("words", analyzer);
         
@@ -142,12 +128,7 @@ public class run_queries {
         String querystr = doc.get("W");
         querystr = QueryParserBase.escape(querystr).trim();
         Query query = parser.parse(querystr);
-        /*
-        if (Integer.parseInt(doc.get("I")) == 1){
-            System.out.println(querystr);
-            System.out.println(query.toString());
-        }
-        */
+        
         
         ScoreDoc[] hits = isearcher.search(query, 1400).scoreDocs;  
     

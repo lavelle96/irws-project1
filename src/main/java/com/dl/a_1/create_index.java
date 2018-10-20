@@ -8,10 +8,7 @@ import java.util.Map;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.core.StopAnalyzer;
-import org.apache.lucene.analysis.core.SimpleAnalyzer;
-import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 
 import org.apache.lucene.document.Document;
@@ -32,10 +29,7 @@ public class create_index {
     public static void main(String[] args) throws IOException, ParseException {
 
         //--------------- SET UP INDEX ----------------------
-        //StandardAnalyzer analyzer = new StandardAnalyzer();
-        //StopAnalyzer analyzer = new StopAnalyzer();
-        //SimpleAnalyzer analyzer = new SimpleAnalyzer();
-        //WhitespaceAnalyzer analyzer = new WhitespaceAnalyzer();
+    
         EnglishAnalyzer analyzer = new EnglishAnalyzer();
         Directory index = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
 
@@ -151,12 +145,6 @@ public class create_index {
         br.close();
     }
 
-    private static void p(String print_string){
-        System.out.print(print_string + "\n");
-    }
 
-    private static void p(int print_string){
-        System.out.print(print_string + "\n");
-    }
 }
 
