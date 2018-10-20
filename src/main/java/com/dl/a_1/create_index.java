@@ -28,6 +28,7 @@ import org.apache.lucene.store.FSDirectory;
 
 public class create_index {
     private static String INDEX_DIRECTORY = "index";
+    private static String CRAN_DOCS = "/cran/cran_docs";
     public static void main(String[] args) throws IOException, ParseException {
 
         //--------------- SET UP INDEX ----------------------
@@ -87,7 +88,7 @@ public class create_index {
 
     private static void read_cran_docs(IndexWriter w) throws IOException {
         //Open file
-        String cran_direc = "/Users/daniellavelle/Documents/MAI/CS7IS3/a_1/cran/cran_docs";
+        String cran_direc = System.getProperty("user.dir") + "/"+ CRAN_DOCS;
         FileInputStream fstream = new FileInputStream(cran_direc);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String strLine, current_mode, current_entry;

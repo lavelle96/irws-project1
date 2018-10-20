@@ -42,6 +42,7 @@ import org.apache.lucene.util.Version;
 public class run_queries {
     private static String INDEX_DIRECTORY = "index";
     private static String TREC_FILE = "/cran/results";
+    private static String CRAN_QUERIES = "/cran/cran.qry";
     public static void main(String[] args) throws IOException, ParseException {
 
         //--------------- SET UP INDEX ----------------------
@@ -70,7 +71,7 @@ public class run_queries {
         
         
 
-        String query_path = "/Users/daniellavelle/Documents/MAI/CS7IS3/a_1/cran/cran.qry";
+        String query_path = System.getProperty("user.dir") + "/"+ CRAN_QUERIES;
         FileInputStream fstream = new FileInputStream(query_path);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String strLine, current_entry;
